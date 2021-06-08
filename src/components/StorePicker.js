@@ -1,23 +1,35 @@
-import React, { Fragment } from "react";
-
+import React from "react";
+import {getFunName} from "../helpers"
 
 
 class StorePicker extends React.Component{
+    
+    myInput = React.createRef();
+   
+    goToStore = (e) => {
+        e.preventDefault();
+        const storeN = (this.myInput.current.value);
+        console.log(storeN)
+        this.props.history.push(`/store/${storeN}`)
+    }
     render() {
         return (
-            <Fragment>
-{/* React.Fragment allows the reurn of sibling elements. They don't need to be wrapped in a parent div */}
-            <p> Fish! </p>
-            <form className="store-selector">
+       
+           
+            <form className="store-selector" onSubmit={this.goToStore}>
                     <h2>Please Enter a Store</h2>
+                    <input
+                        type="text" 
+                        required placeholder="Store Name"
+                        defaultValue={getFunName()}
+                        ref={this.myInput}
+                        />
                     <button>Visit Store ➜ </button>
                 </form>
-                </Fragment>
+              
     )
 }
 
 }
 
 export default StorePicker
-
-{/* Need to be careful where place comments after return statement. can cause errors */ }
