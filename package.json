@@ -7,6 +7,7 @@
     "react-scripts": "3.4.1"
   },
   "dependencies": {
+    "@mapbox/node-pre-gyp": "^1.0.5",
     "autoprefixer-stylus": "0.14.0",
     "firebase": "^7.6.0",
     "prop-types": "^15.6.0",
