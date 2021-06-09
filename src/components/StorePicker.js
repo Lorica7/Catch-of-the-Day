@@ -1,5 +1,5 @@
 import React from "react";
-import {getFunName} from "../helpers"
+import { getFunName } from "../helpers";
 
 
 class StorePicker extends React.Component{
@@ -32,4 +32,4 @@ class StorePicker extends React.Component{
 
 }
 
-export default StorePicker
+export default StorePicker;
