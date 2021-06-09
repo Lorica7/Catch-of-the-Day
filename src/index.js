@@ -5,7 +5,7 @@ import Router from "./components/Router"
 import "./css/style.css"
 
 
-{/* can also do the usual link in the head of html 📃 */}
+//* can also do the usual link in the head of html 📃 */}
 
 
 
