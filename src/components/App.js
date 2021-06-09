@@ -4,6 +4,7 @@ import Inventory from './Inventory.js'
 import Order from './Order.js';
 import sampleFishes from "../sample-fishes.js";
 import FishItem from "./FishItem";
+import base from "../base"
 
 class App extends React.Component {
 
@@ -12,6 +13,29 @@ class App extends React.Component {
         order: {}
 
     }
+
+    componentDidMount() {
+
+        const localStorageRef = localStorage.getItem(this.props.match.params.storeId);
+        if (localStorageRef) {
+            this.setState({ order: JSON.parse(localStorageRef) }
+            )
+            this.ref = base.syncState(`${this.props.match.params.storeId}/fishes`, {
+                context: this,
+                state: "fishes"
+            })
+        }
+    }
+
+    componentWillUnmount() {
+        base.removeBinding(this.ref)
+    }
+
+    componentDidUpdate() {
+        localStorage.setItem(this.props.match.params.storeId, JSON.stringify(this.state.order))
+    }
+
+
     addFish = fish => {
         //take a copy of exitsing state. Do not modify object directly (mutation)
         const fishes = { ...this.state.fishes };
@@ -54,7 +78,7 @@ class App extends React.Component {
                     </ul>
                    
                 </div>
-                <Order />
+                <Order  {...this.state}/>
                 <Inventory addFish={this.addFish} loadSampleFishes={this.loadSampleFishes}/>
                 
             </div>
